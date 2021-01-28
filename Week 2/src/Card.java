@@ -41,7 +41,7 @@ public class Card {
      */
     public void setFaceName(String faceName) throws IllegalAccessException {
         faceName = faceName.toLowerCase();
-        List<String>  faceNames = Arrays.asList("two", "three","four", "five", "six","seven", "eight");
+        List<String>  faceNames = Arrays.asList("two", "three","four", "five", "six","seven", "eight","ace");
 
         if (faceNames.contains(faceName))
                  this.faceName = faceName;
