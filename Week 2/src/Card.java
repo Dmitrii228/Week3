@@ -1,61 +1,23 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class Card {
     private String faceName;
     private String suit;
 
     /**
-     * This constructor takes 2 arguments,one for the face name and
-     * one for the suit. The value of teh card assumes that aces
+     * This constructor takes 2 arguments, one for the face name and
+     * one for the suit.  The value of the card assumes that aces
      * are high and will dynamically establish the card value
-     * when the herCardValue() method is run
+     * when the getCardValue() method is run
      *
-     * The constructor must be the same as the class (including the upper case first letter)
+     * The constructor must be the same name as the class (including the upper case first letter)
      * The constructor does NOT have a return type
      */
-    public Card(String faceName, String suit) throws IllegalAccessException {
+    public Card(String faceName, String suit)
+    {
         setFaceName(faceName);
         setSuit(suit);
-    }
-
-    /**
-     * Validate the argument
-     *
-     *
-     */
-
-    public void setSuit(String suit) throws IllegalAccessException {
-        suit=suit.toLowerCase();
-        List<String>  validSuits = Arrays.asList("hearts", "diamonds","spades", "clubs");
-        if (validSuits.contains(suit))
-            this.suit = suit;
-        else
-            throw new IllegalAccessException(suit+" is not a valid. Use one of "+validSuits);
-    }
-        // returns face names
-    public static List<String> getFaceNames(){
-        return Arrays.asList("two","three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace");
-    }
-
-    /**
-     * Validates that the argument is in the collection of the list and set the instance variables
-     *
-     */
-    public void setFaceName(String faceName) throws IllegalAccessException {
-        faceName = faceName.toLowerCase();
-        List<String>  faceNames = getFaceNames();
-
-        if (faceNames.contains(faceName))
-                 this.faceName = faceName;
-        else
-            throw new IllegalAccessException(faceName + " is not valid, use "+faceNames);
-    }
-
-
-    public String getSuit() {
-        return suit;
     }
 
     public String getFaceName() {
@@ -63,28 +25,81 @@ public class Card {
     }
 
     /**
-     * This method will return the String "red " if the car's suit is hearts or diamonds , "black" otherwise
-     *
+     * This returns a list of valid face names in lower case
+     * @return
      */
+    public static List<String> getFaceNames(){
+        return Arrays.asList("two","three","four","five","six","seven","eight",
+                "nine","ten","jack","queen","king","ace");
+    }
 
-    public String getCardColour(){
-        if (suit.equals("hearts")||suit.equals("diamonds"))
+    /**
+     * This method will validate that the argument is in the collection of
+     * "two","three","four","five","six","seven","eight","nine","ten","jack","queen",
+     * "king","ace" and set the instance variable
+     * @param faceName - this is a String to represent the name of the card
+     */
+    public void setFaceName(String faceName) {
+        faceName = faceName.toLowerCase();
+        List<String> faceNames = getFaceNames();
+
+        if (faceNames.contains(faceName))
+            this.faceName = faceName;
+        else
+            throw new IllegalArgumentException(faceName + " is not valid, use "+faceNames);
+
+        this.faceName = faceName;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public static List<String> getSuits()
+    {
+        return Arrays.asList("hearts","diamonds","spades","clubs");
+    }
+
+    /**
+     * This method will validate that the argument is one of "hearts","diamonds","spades","clubs"
+     * @param suit
+     */
+    public void setSuit(String suit) {
+        suit = suit.toLowerCase();
+        List<String> validSuits = getSuits();
+        if (validSuits.contains(suit))  // this performs a case sensitive comparison
+            this.suit = suit;
+        else
+            throw new IllegalArgumentException(suit + " is not valid.  Use one of "+validSuits);
+    }
+
+    /**
+     * This method will return the String "red" if the card's suit is hearts or diamonds,
+     * "black" otherwise
+     * @return
+     */
+    public String getCardColour()
+    {
+        if (suit.equalsIgnoreCase("hearts")||suit.equals("diamonds"))
             return "red";
         else
             return "black";
     }
 
     /**
-     * Returns the value of the card 2==2 3==3 jack == 11 queen == 12 kind == 13
+     * This method will return the value of the card.  2 = 2, 3=3...9=9, 10=10, jack = 11
+     * queen = 12, king = 13, ace = 14
      * @return
      */
-    public int getFaceValue(){
-        // the first fave name in the list (position 0) is "two" so we add 2 to the index of each card
-        return getFaceNames().indexOf(faceName) +2;
+    public int getFaceValue()
+    {
+        //the first face name in the list (position 0) is "two".  So we add 2 to the
+        //index (or position) of each card
+        return getFaceNames().indexOf(faceName) + 2;
     }
 
-
-    public String toString(){
+    public String toString()
+    {
         return faceName + " of " + suit;
     }
 }
