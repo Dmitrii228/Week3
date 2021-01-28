@@ -15,9 +15,9 @@ public class Card {
      * The constructor must be the same as the class (including the upper case first letter)
      * The constructor does NOT have a return type
      */
-    public Card(String faceName, String suit){
-        this.faceName = faceName;
-        this.suit = suit;
+    public Card(String faceName, String suit) throws IllegalAccessException {
+        setFaceName(faceName);
+        setSuit(suit);
     }
 
 
@@ -30,9 +30,18 @@ public class Card {
             throw new IllegalAccessException(suit+" is not a valid. Use one of "+validSuits);
     }
 
+    /**
+     * Validates that the argument is in the collection of the list and set the instance variables
+     *
+     */
+    public void setFaceName(String faceName) throws IllegalAccessException {
+        faceName = faceName.toLowerCase();
+        List<String>  faceNames = Arrays.asList("two", "three","four", "five", "six","seven", "eight");
 
-    public void setFaceName(String faceName) {
-        this.faceName = faceName;
+        if (faceNames.contains(faceName))
+                 this.faceName = faceName;
+        else
+            throw new IllegalAccessException(faceName + " is not valid, use "+faceNames);
     }
 
 
