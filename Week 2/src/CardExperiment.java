@@ -9,8 +9,8 @@ public class CardExperiment {
 
         /*jesseOfMid.setSuit("hearts");
         jesseOfMid.setSuit("Diamonds");*/
-        System.out.printf("%s is a %s card%n", aceOfSpades, aceOfSpades.getCardColour());
-        System.out.printf("%s is a %s card%n", jesseOfMid, jesseOfMid.getCardColour());
+        System.out.printf("%s is a %s card with value of %d %n", aceOfSpades, aceOfSpades.getCardColour(), aceOfSpades.getFaceValue());
+        System.out.printf("%s is a %s card with value of %d%n", jesseOfMid, jesseOfMid.getCardColour(), jesseOfMid.getFaceValue());
 
     }
 }

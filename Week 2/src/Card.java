@@ -34,6 +34,10 @@ public class Card {
         else
             throw new IllegalAccessException(suit+" is not a valid. Use one of "+validSuits);
     }
+        // returns face names
+    public static List<String> getFaceNames(){
+        return Arrays.asList("two","three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace");
+    }
 
     /**
      * Validates that the argument is in the collection of the list and set the instance variables
@@ -41,7 +45,7 @@ public class Card {
      */
     public void setFaceName(String faceName) throws IllegalAccessException {
         faceName = faceName.toLowerCase();
-        List<String>  faceNames = Arrays.asList("two","three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace");
+        List<String>  faceNames = getFaceNames();
 
         if (faceNames.contains(faceName))
                  this.faceName = faceName;
@@ -69,6 +73,16 @@ public class Card {
         else
             return "black";
     }
+
+    /**
+     * Returns the value of the card 2==2 3==3 jack == 11 queen == 12 kind == 13
+     * @return
+     */
+    public int getFaceValue(){
+        // the first fave name in the list (position 0) is "two" so we add 2 to the index of each card
+        return getFaceNames().indexOf(faceName) +2;
+    }
+
 
     public String toString(){
         return faceName + " of " + suit;
