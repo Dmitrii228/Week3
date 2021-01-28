@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class Card {
     private String faceName;
     private String suit;
@@ -14,5 +18,35 @@ public class Card {
     public Card(String faceName, String suit){
         this.faceName = faceName;
         this.suit = suit;
+    }
+
+
+    public void setSuit(String suit) throws IllegalAccessException {
+        suit=suit.toLowerCase();
+        List<String>  validSuits = Arrays.asList("hearts", "diamonds","spades", "clubs");
+        if (validSuits.contains(suit))
+            this.suit = suit;
+        else
+            throw new IllegalAccessException(suit+" is not a valid. Use one of "+validSuits);
+    }
+
+
+    public void setFaceName(String faceName) {
+        this.faceName = faceName;
+    }
+
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public String getFaceName() {
+        return faceName;
+    }
+
+
+
+    public String toString(){
+        return faceName + " of " + suit;
     }
 }
