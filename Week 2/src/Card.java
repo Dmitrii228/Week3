@@ -20,6 +20,11 @@ public class Card {
         setSuit(suit);
     }
 
+    /**
+     * Validate the argument
+     *
+     *
+     */
 
     public void setSuit(String suit) throws IllegalAccessException {
         suit=suit.toLowerCase();
@@ -53,7 +58,17 @@ public class Card {
         return faceName;
     }
 
+    /**
+     * This method will return the String "red " if the car's suit is hearts or diamonds , "black" otherwise
+     *
+     */
 
+    public String getCardColour(){
+        if (suit.equals("hearts")||suit.equals("diamonds"))
+            return "red";
+        else
+            return "black";
+    }
 
     public String toString(){
         return faceName + " of " + suit;
